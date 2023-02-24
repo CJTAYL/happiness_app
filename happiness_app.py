@@ -53,7 +53,6 @@ freedom = alt.Chart(data).mark_point().encode(
         selection
     )
 
-
 health = alt.Chart(data).mark_point().encode(
     x='Health (Life Expectancy)',
     y='Happiness Score',
@@ -66,10 +65,10 @@ health = alt.Chart(data).mark_point().encode(
         selection
     )
 
-st.header("World Happiness Report - 2016")
+st.header("World Happiness Report")
 st.write("The data for this app were collected by the United Nation through the World Happiness Report and shared with Kaggle.")
 st.write("""
-        The interactive chart below displays results from the World Happiness Report in 2016. 
+        The interactive charts below display results from the World Happiness Report in 2016. 
         The data may be filtered by selecting a specific region from the legend.
         """)
 

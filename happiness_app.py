@@ -69,7 +69,8 @@ st.header("World Happiness Report")
 st.write("The data for this app were collected by the United Nation through the World Happiness Report and shared with Kaggle.")
 st.write("""
         The interactive charts below display results from the World Happiness Report in 2016. 
-        The data may be filtered by selecting a specific region from the legend.
+        The data may be filtered by selecting a specific region from the legend. The filter may be 
+        reset by clicking on any area of the chart.
         """)
 
 st.altair_chart(gdp, use_container_width=True)

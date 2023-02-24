@@ -29,6 +29,18 @@ gdp = alt.Chart(data).mark_point().encode(
         selection
     )
 
+family = alt.Chart(data).mark_point().encode(
+    x='Family',
+    y='Happiness Score',
+    color='Region',
+    opacity = alt.condition(selection, alt.value(1), alt.value(.1)),
+    tooltip=['Country', 'Region', 'Happiness Score', 'Family']
+    ).properties(
+        title = 'Family and Happiness'
+    ).add_selection(
+        selection
+    )
+
 st.header("World Happiness Report - 2016")
 st.write("The World Happiness Report is conducted by the United Nations annually.")
 st.write("""
@@ -38,6 +50,8 @@ st.write("""
 
 st.altair_chart(gdp, use_container_width=True)
 st.write("An analysis of the data indicates a positive correlation exists between GDP per Capita and Happiness Score.")
+
+st.altair_chart(family, use_container_width=True)
 
 st.write("App created by Chris Taylor")
 

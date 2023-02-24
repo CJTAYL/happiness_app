@@ -37,4 +37,7 @@ st.write("""
         """)
 
 st.altair_chart(gdp, use_container_width=True)
+st.write("An analysis of the data indicates a positive correlation exists between GDP per Capita and Happiness Score.")
+
+st.write("App created by Chris Taylor")
 

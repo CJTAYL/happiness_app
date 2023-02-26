@@ -14,11 +14,12 @@ from streamlit_option_menu import option_menu
 
 st.set_page_config(page_title="World Happiness Report", page_icon=":tada:")
 
-# --- HORIZONTAL MENU ---
-select = option_menu(
-    menu_title=None,
-    options=['All Countries', 'Americas', 'Africa and Middle East', 'Asia', 'Europe']
-    )
+# --- SIDEBAR MENU ---
+with st.sidebar:
+    select = option_menu(
+        menu_title=None,
+        options=['All Countries', 'Americas', 'Africa and Middle East', 'Asia', 'Europe']
+        )
 
 url = "https://raw.githubusercontent.com/CJTAYL/happiness_app/main/2016.csv"
 

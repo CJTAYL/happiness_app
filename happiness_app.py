@@ -17,6 +17,12 @@ data = pd.read_csv(url)
 
 selection = alt.selection_multi(fields = ['Region'], bind = 'legend')
 
+america = data.loc[(data['Region'] == 'North America') | (data['Region'] == 'Latin America and Caribbean')]
+aus_nz = data.loc[data['Region'] == 'Austrailia and New Zealand']
+euro = data.loc[(data['Region'] == 'Central and Eastern Europe') | (data['Region'] == 'Western Europe')]
+asia = data.loc[(data['Region'] == 'Eastern Asia') | (data['Region'] == 'Southern Asia') | (data['Region'] == 'Southeastern Asia')]
+africa_me = data.loc[(data['Region'] == 'Middle East and Northern Africa') | (data['Region'] == 'Sub-Saharan Africa')]
+
 hist = alt.Chart(data).mark_bar().encode(
     alt.X('Happiness Score', bin=alt.BinParams(maxbins=8)),
     y='count()',
@@ -25,6 +31,15 @@ hist = alt.Chart(data).mark_bar().encode(
     ).properties(
     title='Histogram of Happiness Scores'
     )
+
+all_countries = alt.Chart(data).mark_bar().encode(
+    x=alt.X('sum(Happiness Score)', title='Happiness Score'),
+    y=alt.Y('Country', sort='-x', title = ''),
+    color='Region',
+    tooltip=['Country', 'Happiness Score']
+).properties(
+    title='All Countries'
+)
 
 st.header("World Happiness Report Data - 2016")
 st.write("The data for this app were collected by the United Nations and shared through Kaggle.")
@@ -37,6 +52,8 @@ st.write("""
 
 st.altair_chart(hist, use_container_width=True)
 st.write('In 2016, the mean Happiness Score was 5.38')
-st.write('To provide a fine grained analysis') 
+st.header('Happiness Scores for All Countries')
+st.altair_chart(all_countries, use_container_width=True)
+st.write('To provide a fine grained analysis, regions from around the world were grouped together based on proximity.') 
 st.write("App created by Chris Taylor")
 

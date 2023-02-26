@@ -32,13 +32,13 @@ hist = alt.Chart(data).mark_bar().encode(
     title='Histogram of Happiness Scores'
     )
 
-all_countries = alt.Chart(data).mark_bar().encode(
+americas = alt.Chart(america).mark_bar().encode(
     x=alt.X('sum(Happiness Score)', title='Happiness Score'),
     y=alt.Y('Country', sort='-x', title = ''),
     color='Region',
     tooltip=['Country', 'Happiness Score']
 ).properties(
-    title='All Countries'
+    title='Latin and North America'
 )
 
 st.header("World Happiness Report Data - 2016")
@@ -52,8 +52,8 @@ st.write("""
 
 st.altair_chart(hist, use_container_width=True)
 st.write('In 2016, the mean Happiness Score was 5.38')
-st.header('Happiness Scores for All Countries')
-st.altair_chart(all_countries, use_container_width=True)
 st.write('To provide a fine grained analysis, regions from around the world were grouped together based on proximity.') 
+st.header('Latin and North America')
+st.altair_chart(americas, use_container_width=True)
 st.write("App created by Chris Taylor")
 

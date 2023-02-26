@@ -28,7 +28,7 @@ data = pd.read_csv(url)
 selection = alt.selection_multi(fields = ['Region'], bind = 'legend')
 
 america = data.loc[(data['Region'] == 'North America') | (data['Region'] == 'Latin America and Caribbean')]
-aus_nz = data.loc[data['Region'] == 'Austrailia and New Zealand']
+aus_nz = data.loc[data['Region'] == 'Australia and New Zealand']
 euro = data.loc[(data['Region'] == 'Central and Eastern Europe') | (data['Region'] == 'Western Europe')]
 asia = data.loc[(data['Region'] == 'Eastern Asia') | (data['Region'] == 'Southern Asia') | (data['Region'] == 'Southeastern Asia')]
 africa_me = data.loc[(data['Region'] == 'Middle East and Northern Africa') | (data['Region'] == 'Sub-Saharan Africa')]

@@ -68,9 +68,14 @@ st.write("""
 st.altair_chart(hist, use_container_width=True)
 st.write('In 2016, the mean Happiness Score was 5.38')
 st.write('To provide a fine grained analysis, regions from around the world were grouped together based on proximity.') 
-st.header('Latin and North America')
-st.altair_chart(americas, use_container_width=True)
-st.header('Asia')
-st.altair_chart(asias, use_container_width=True)
+
+if select == 'Americas':
+    st.header('Latin and North America')
+    st.altair_chart(americas, use_container_width=True)
+
+if select == 'Asia':
+    st.header('Asia')
+    st.altair_chart(asias, use_container_width=True)
+
 st.write("App created by Chris Taylor")
 

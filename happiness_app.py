@@ -36,6 +36,7 @@ st.write("""
         """)
 
 st.altair_chart(hist, use_container_width=True)
-
+st.write('In 2016, the mean Happiness Score was 5.38')
+st.write('To provide a fine grained analysis') 
 st.write("App created by Chris Taylor")
 

@@ -18,7 +18,7 @@ st.set_page_config(page_title="World Happiness Report", page_icon=":tada:")
 with st.sidebar:
     select = option_menu(
         menu_title=None,
-        options=['All Countries', 'Americas', 'Africa and Middle East', 'Asia', 'Europe']
+        options=['Background', 'All Countries', 'Americas', 'Africa and Middle East', 'Asia', 'Europe']
         )
 
 url = "https://raw.githubusercontent.com/CJTAYL/happiness_app/main/2016.csv"
@@ -65,15 +65,14 @@ asias = alt.Chart(asia).mark_bar().encode(
     tooltip=['Country', 'Happiness Score']
 )
 
-st.header("World Happiness Report Data - 2016")
-st.write("The data for this app were collected by the United Nations and shared through Kaggle.")
-st.write("A comprehensive description of the World Happiness Report can be found on Wikipedia.")
-st.write("""
+if select == 'Background'"
+    st.write("The data for this app were collected by the United Nations and shared through Kaggle.")
+    st.write("A comprehensive description of the World Happiness Report can be found on Wikipedia.")
+    st.write("""
         Although the World Happiness Report is published annually and provides a wealth of information, 
         one feature it lacks is interactive graphs. The dashboard presented below is intended to augment the annual report
         and provide users with additional information and control.
         """)
-
 
 if select == 'All Countries':
     st.altair_chart(hist, use_container_width=True)

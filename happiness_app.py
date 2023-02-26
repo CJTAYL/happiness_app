@@ -74,9 +74,10 @@ health = alt.Chart(data).mark_point().encode(
         selection
     )
 
-st.header("World Happiness Report")
-st.write("The data for this app were collected by the United Nations through the World Happiness Report and shared with Kaggle.")
+st.header("World Happiness Report Data - 2016")
+st.write("The data for this app were collected by the United Nations and shared through Kaggle.")
 st.write("""
+        The World Happiness Report is a 
         Although the World Happiness Report is published annually and provides a wealth of information, one feature it lacks The interactive charts below display results from the World Happiness Report in 2016. 
         The data may be filtered by selecting a specific region from the legend. 
         The filter may be reset by clicking on any area of the chart.

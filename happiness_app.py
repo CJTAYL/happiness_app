@@ -26,53 +26,14 @@ hist = alt.Chart(data).mark_bar().encode(
     title='Histogram of Happiness Scores'
     )
 
-gdp = alt.Chart(data).mark_point().encode(
-    x='Economy (GDP per Capita)', 
-    y='Happiness Score',
-    color='Region', 
-    opacity = alt.condition(selection, alt.value(1), alt.value(.1)),
-    tooltip=['Country', 'Region', 'Happiness Score', 'Economy (GDP per Capita)']
-    ).properties(
-        title = 'GDP and Happiness'
-    ).add_selection(
-        selection
-    )
-
-family = alt.Chart(data).mark_point().encode(
-    x='Family',
-    y='Happiness Score',
+happiness_all = alt.Chart(data).mark_bar().encode(
+    x=alt.X('sum(Happiness Score)', title='Happiness Score'),
+    y=alt.Y('Country', sort='-x', title = ''),
     color='Region',
-    opacity = alt.condition(selection, alt.value(1), alt.value(.1)),
-    tooltip=['Country', 'Region', 'Happiness Score', 'Family']
-    ).properties(
-        title = 'Family and Happiness'
-    ).add_selection(
-        selection
-    )
-
-freedom = alt.Chart(data).mark_point().encode(
-    x='Freedom',
-    y='Happiness Score',
-    color='Region',
-    opacity = alt.condition(selection, alt.value(1), alt.value(.1)),
-    tooltip=['Country', 'Region', 'Happiness Score', 'Freedom']
-    ).properties(
-        title = 'Freedom and Happiness'
-    ).add_selection(
-        selection
-    )
-
-health = alt.Chart(data).mark_point().encode(
-    x='Health (Life Expectancy)',
-    y='Happiness Score',
-    color='Region',
-    opacity = alt.condition(selection, alt.value(1), alt.value(.1)),
-    tooltip=['Country', 'Region', 'Happiness Score', 'Health (Life Expectancy)']
-    ).properties(
-        title = 'Life Expectancy and Happiness'
-    ).add_selection(
-        selection
-    )
+    tooltip=['Country', 'Happiness Score']
+).properties(
+    title='All Countries'
+)
 
 st.header("World Happiness Report Data - 2016")
 st.write("The data for this app were collected by the United Nations and shared through Kaggle.")
@@ -85,13 +46,7 @@ st.write("""
 
 st.altair_chart(hist, use_container_width=True)
 
-st.altair_chart(gdp, use_container_width=True)
-
-st.altair_chart(family, use_container_width=True)
-
-st.altair_chart(freedom, use_container_width=True)
-
-st.altair_chart(health, use_container_width=True)
+st.altair_chart(happiness_all, use_container_width=True)
 
 st.write("App created by Chris Taylor")
 

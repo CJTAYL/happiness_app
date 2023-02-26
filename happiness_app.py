@@ -17,15 +17,13 @@ data = pd.read_csv(url)
 
 selection = alt.selection_multi(fields = ['Region'], bind = 'legend')
 
-happiness_historgram = alt.Chart(data).mark_bar().encode(
+hist = alt.Chart(data).mark_bar().encode(
     alt.X('Happiness Score', bin=alt.BinParams(maxbins=8)),
     y='count()',
     color='Region',
     tooltip=['Country']
     ).properties(
-    title='Histogram of Happiness Scores',
-    width=500,
-    height=400
+    title='Histogram of Happiness Scores'
     )
 
 gdp = alt.Chart(data).mark_point().encode(
@@ -84,7 +82,7 @@ st.write("""
         The filter may be reset by clicking on any area of the chart.
         """)
 
-st.altair_chart(happiness_histogram, use_container_width=True)
+st.altair_chart(hist, use_container_width=True)
 
 st.altair_chart(gdp, use_container_width=True)
 

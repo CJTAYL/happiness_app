@@ -84,7 +84,6 @@ st.write("""
         reset by clicking on any area of the chart.
         """)
 
-st.altair_chart(happiness_histogram, use_container_width=True)
 
 st.altair_chart(gdp, use_container_width=True)
 

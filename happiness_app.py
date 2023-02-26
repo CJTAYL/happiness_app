@@ -48,11 +48,11 @@ asias = alt.Chart(asia).mark_bar().encode(
 
 st.header("World Happiness Report Data - 2016")
 st.write("The data for this app were collected by the United Nations and shared through Kaggle.")
+st.write("A comprehensive description of the World Happiness Report can be found on Wikipedia.")
 st.write("""
-        The World Happiness Report is a 
-        Although the World Happiness Report is published annually and provides a wealth of information, one feature it lacks The interactive charts below display results from the World Happiness Report in 2016. 
-        The data may be filtered by selecting a specific region from the legend. 
-        The filter may be reset by clicking on any area of the chart.
+        Although the World Happiness Report is published annually and provides a wealth of information, 
+        one feature it lacks is interactive graphs. The dashboard presented below is intended to augment the annual report
+        and provide users with additional information and control.
         """)
 
 st.altair_chart(hist, use_container_width=True)

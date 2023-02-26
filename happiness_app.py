@@ -26,15 +26,6 @@ hist = alt.Chart(data).mark_bar().encode(
     title='Histogram of Happiness Scores'
     )
 
-happiness_all = alt.Chart(data).mark_bar().encode(
-    x=alt.X('sum(Happiness Score)', title='Happiness Score'),
-    y=alt.Y('Country', sort='-x', title = ''),
-    color='Region',
-    tooltip=['Country', 'Happiness Score']
-).properties(
-    title='All Countries'
-)
-
 st.header("World Happiness Report Data - 2016")
 st.write("The data for this app were collected by the United Nations and shared through Kaggle.")
 st.write("""
@@ -45,8 +36,6 @@ st.write("""
         """)
 
 st.altair_chart(hist, use_container_width=True)
-
-st.altair_chart(happiness_all, use_container_width=True)
 
 st.write("App created by Chris Taylor")
 

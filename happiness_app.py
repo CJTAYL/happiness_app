@@ -65,7 +65,7 @@ asias = alt.Chart(asia).mark_bar().encode(
     tooltip=['Country', 'Happiness Score']
 )
 
-if select == 'Background'"
+if select == 'Background':
     st.write("The data for this app were collected by the United Nations and shared through Kaggle.")
     st.write("A comprehensive description of the World Happiness Report can be found on Wikipedia.")
     st.write("""

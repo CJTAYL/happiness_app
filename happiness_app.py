@@ -153,7 +153,7 @@ if select == 'Oceania':
     st.header('Oceania')
     st.altair_chart(oceania, use_container_width=True)
 
-if select == 'Important Variables':
-    st.header('Important Variables')
+if select == 'Influential Variables':
+    st.header('Influential Variables')
     st.altair_chart(gdp, use_container_width=True)
     st.altair_chart(trust, use_container_width=True)

@@ -18,7 +18,7 @@ st.set_page_config(page_title="World Happiness Report", page_icon=":tada:")
 with st.sidebar:
     select = option_menu(
         menu_title=None,
-        options=['Background', 'All Countries', 'Americas', 'Africa and Middle East', 'Asia', 'Europe', 'Oceania']
+        options=['Background', 'All Countries', 'Influential Variables', 'Americas', 'Africa and Middle East', 'Asia', 'Europe', 'Oceania']
         )
 
 url = "https://raw.githubusercontent.com/CJTAYL/happiness_app/main/2016.csv"
@@ -72,6 +72,13 @@ asias = alt.Chart(asia).mark_bar().encode(
     tooltip=['Country', 'Happiness Score']
 )
 
+euro = alt.Chart(euro).mark_bar().encode(
+    x=alt.X('sum(Happiness Score)', title='Happiness Score'),
+    y=alt.Y('Country', sort='-x', title = ''),
+    color='Region',
+    tooltip=['Country', 'Happiness Score']
+)
+
 oceania = alt.Chart(aus_nz).mark_bar().encode(
     x=alt.X('sum(Happiness Score)', title='Happiness Score'),
     y=alt.Y('Country', sort='-x', title = ''),
@@ -106,6 +113,10 @@ if select == 'Americas':
 if select == 'Asia':
     st.header('Asia')
     st.altair_chart(asias, use_container_width=True)
+    
+if select == 'Europe':
+    st.header('Europe')
+    st.altair_chart(euro, use_container_width=True)
     
 if select == 'Oceania':
     st.header('Oceania')

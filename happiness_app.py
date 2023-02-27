@@ -23,18 +23,19 @@ with st.sidebar:
         options=['Background', 'All Countries', 'Americas', 'Africa and Middle East', 'Asia', 'Europe', 'Oceania', 'Influential Variables']
         )
 
+# --- DATA ---
 url = "https://raw.githubusercontent.com/CJTAYL/happiness_app/main/2016.csv"
 
 data = pd.read_csv(url)
 
-selection = alt.selection_multi(fields = ['Region'], bind = 'legend')
-
+# --- DATA FRAMES BY REGION ---
 america = data.loc[(data['Region'] == 'North America') | (data['Region'] == 'Latin America and Caribbean')]
 aus_nz = data.loc[data['Region'] == 'Australia and New Zealand']
 euro = data.loc[(data['Region'] == 'Central and Eastern Europe') | (data['Region'] == 'Western Europe')]
 asia = data.loc[(data['Region'] == 'Eastern Asia') | (data['Region'] == 'Southern Asia') | (data['Region'] == 'Southeastern Asia')]
 africa_me = data.loc[(data['Region'] == 'Middle East and Northern Africa') | (data['Region'] == 'Sub-Saharan Africa')]
 
+# --- HAPPINESS SCORE VISUALIZATIONS ---
 hist = alt.Chart(data).mark_bar().encode(
     alt.X('Happiness Score', bin=alt.BinParams(maxbins=8)),
     y='count()',
@@ -88,13 +89,41 @@ oceania = alt.Chart(aus_nz).mark_bar().encode(
     tooltip=['Country', 'Happiness Score']
 )
 
+# --- IMPORTANT VARIABLES VISUALIZATIONS ---
+selection = alt.selection_multi(fields = ['Region'], bind = 'legend')
+
+gdp = alt.Chart(data).mark_point().encode(
+    x='Economy (GDP per Capita)', 
+    y='Happiness Score',
+    color='Region', 
+    opacity = alt.condition(selection, alt.value(1), alt.value(.1)),
+    tooltip=['Country', 'Region', 'Happiness Score', 'Economy (GDP per Capita)']
+    ).properties(
+        title = 'Happiness Score x GDP per Capita',
+    ).add_selection(
+        selection
+    )
+
+trust = alt.Chart(data).mark_point().encode(
+    x='Trust (Government Corruption)', 
+    y='Happiness Score',
+    color='Region', 
+    opacity = alt.condition(selection, alt.value(1), alt.value(.1)),
+    tooltip=['Country', 'Region', 'Happiness Score', 'Trust (Government Corruption)']
+    ).properties(
+        title = 'Happiness Score x Trust',
+    ).add_selection(
+        selection
+    )
+
+# --- PAGES FOR WEB APP ---
 if select == 'Background':
     st.header('Background')
     st.write("The data for this app were collected by the United Nations and shared through Kaggle.")
     st.write("A comprehensive description of the World Happiness Report can be found on [Wikipedia](https://en.wikipedia.org/wiki/World_Happiness_Report).")
     st.write("""
         Although the World Happiness Report is published annually and provides a wealth of information, 
-        one feature it lacks is interactive graphs. The dashboard presented below is intended to augment the annual report
+        one feature it lacks is interactive visualizations. The graphs contained in this web app are intended to augment the annual report
         and provide users with additional information and control.
         """)
     st.write("App created by Chris Taylor")
@@ -124,4 +153,7 @@ if select == 'Oceania':
     st.header('Oceania')
     st.altair_chart(oceania, use_container_width=True)
 
-
+if select == 'Important Variables':
+    st.header('Important Variables')
+    st.altair_chart(gdp, use_container_width=True)
+    st.altair_chart(trust, use_container_width=True)

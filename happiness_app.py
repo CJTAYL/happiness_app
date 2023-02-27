@@ -18,7 +18,7 @@ st.set_page_config(page_title="World Happiness Report", page_icon=":tada:")
 with st.sidebar:
     select = option_menu(
         menu_title=None,
-        options=['Background', 'All Countries', 'Influential Variables', 'Americas', 'Africa and Middle East', 'Asia', 'Europe', 'Oceania']
+        options=['Background', 'All Countries', 'Americas', 'Africa and Middle East', 'Asia', 'Europe', 'Oceania', 'Influential Variables']
         )
 
 url = "https://raw.githubusercontent.com/CJTAYL/happiness_app/main/2016.csv"
@@ -42,7 +42,7 @@ hist = alt.Chart(data).mark_bar().encode(
     title='Histogram of Happiness Scores'
     )
 
-all = alt.Chart(data).mark_bar().encode(
+all_countries = alt.Chart(data).mark_bar().encode(
     x=alt.X('sum(Happiness Score)', title='Happiness Score'),
     y=alt.Y('Country', sort='-x', title = ''),
     color='Region',
@@ -100,7 +100,7 @@ if select == 'Background':
 if select == 'All Countries':
     st.header('All Countries')
     st.altair_chart(hist, use_container_width=True)
-    st.altair_chart(all, use_container_width=True) 
+    st.altair_chart(all_countries, use_container_width=True) 
 
 if select == 'Africa and Middle East':
     st.header('Africa and Middle East')

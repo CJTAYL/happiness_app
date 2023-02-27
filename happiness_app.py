@@ -14,6 +14,8 @@ from streamlit_option_menu import option_menu
 
 st.set_page_config(page_title="World Happiness Report", page_icon=":tada:")
 
+st.header('Visualizations With Data from the 2016 World Happiness Report')
+
 # --- SIDEBAR MENU ---
 with st.sidebar:
     select = option_menu(

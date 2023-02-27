@@ -116,6 +116,18 @@ trust = alt.Chart(data).mark_point().encode(
         selection
     )
 
+family_chart = alt.Chart(data).mark_point().encode(
+    x='Family', 
+    y='Happiness Score',
+    color='Region', 
+    opacity = alt.condition(selection, alt.value(1), alt.value(.1)),
+    tooltip=['Country', 'Region', 'Happiness Score', 'Family']
+    ).properties(
+        title = 'Happiness Score x Family',
+    ).add_selection(
+        selection
+    )
+
 # --- PAGES FOR WEB APP ---
 if select == 'Background':
     st.header('Background')
@@ -135,6 +147,7 @@ if select == 'All Countries':
     st.header('Influential Variables')
     st.altair_chart(gdp, use_container_width=True)
     st.altair_chart(trust, use_container_width=True)
+    st.altair_chart(family_chart, use_container_width=True)
 
 if select == 'Africa and Middle East':
     st.header('Africa and Middle East')

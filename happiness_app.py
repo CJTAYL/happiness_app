@@ -51,6 +51,13 @@ all = alt.Chart(data).mark_bar().encode(
     title='All Countries'
 )
 
+africa_me = alt.Chart(africa_me).mark_bar().encode(
+    x=alt.X('sum(Happiness Score)', title='Happiness Score'),
+    y=alt.Y('Country', sort='-x', title = ''),
+    color='Region',
+    tooltip=['Country', 'Happiness Score']
+)
+    
 americas = alt.Chart(america).mark_bar().encode(
     x=alt.X('sum(Happiness Score)', title='Happiness Score'),
     y=alt.Y('Country', sort='-x', title = ''),
@@ -81,12 +88,17 @@ if select == 'Background':
         one feature it lacks is interactive graphs. The dashboard presented below is intended to augment the annual report
         and provide users with additional information and control.
         """)
+    st.write("App created by Chris Taylor")
 
 if select == 'All Countries':
     st.header('All Countries')
     st.altair_chart(hist, use_container_width=True)
     st.altair_chart(all, use_container_width=True) 
 
+if select == 'Africa and Middle East':
+    st.header('Africa and Middle East')
+    st.altair_chart(africa_me, use_container_width=True)
+    
 if select == 'Americas':
     st.header('Latin and North America')
     st.altair_chart(americas, use_container_width=True)
@@ -99,5 +111,4 @@ if select == 'Oceania':
     st.header('Oceania')
     st.altair_chart(oceania, use_container_width=True)
 
-st.write("App created by Chris Taylor")
 

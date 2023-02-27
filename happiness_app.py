@@ -20,7 +20,7 @@ st.header('Visualizations With Data from the 2016 World Happiness Report')
 with st.sidebar:
     select = option_menu(
         menu_title=None,
-        options=['Background', 'All Countries', 'Americas', 'Africa and Middle East', 'Asia', 'Europe', 'Oceania', 'Influential Variables']
+        options=['Background', 'All Countries', 'Americas', 'Africa and Middle East', 'Asia', 'Europe', 'Oceania']
         )
 
 # --- DATA ---
@@ -129,9 +129,12 @@ if select == 'Background':
     st.write("App created by Chris Taylor")
 
 if select == 'All Countries':
-    st.header('All Countries')
+    st.header('Happiness Scores')
     st.altair_chart(hist, use_container_width=True)
     st.altair_chart(all_countries, use_container_width=True) 
+    st.header('Influential Variables')
+    st.altair_chart(gdp, use_container_width=True)
+    st.altair_chart(trust, use_container_width=True)
 
 if select == 'Africa and Middle East':
     st.header('Africa and Middle East')
@@ -152,8 +155,4 @@ if select == 'Europe':
 if select == 'Oceania':
     st.header('Oceania')
     st.altair_chart(oceania, use_container_width=True)
-
-if select == 'Influential Variables':
-    st.header('Influential Variables')
-    st.altair_chart(gdp, use_container_width=True)
-    st.altair_chart(trust, use_container_width=True)
+    
